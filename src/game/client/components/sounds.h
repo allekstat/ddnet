@@ -45,6 +45,7 @@ class CSounds : public CComponent
 	float m_GameSoundVolume = -1.0f;
 	float m_MapSoundVolume = -1.0f;
 	float m_BackgroundMusicVolume = -1.0f;
+	float m_VoiceChatVolume = -1.0f;
 
 public:
 	// sound channels
@@ -55,6 +56,7 @@ public:
 		CHN_WORLD,
 		CHN_GLOBAL,
 		CHN_MAPSOUND,
+		CHN_VOICECHAT,
 	};
 
 	int Sizeof() const override { return sizeof(*this); }

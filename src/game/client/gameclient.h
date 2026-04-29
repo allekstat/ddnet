@@ -191,6 +191,8 @@ public:
 
 	CLocalServer m_LocalServer;
 
+	CVoiceChat m_VoiceChat;
+
 private:
 	std::vector<class CComponent *> m_vpAll;
 	std::vector<class CComponent *> m_vpInput;

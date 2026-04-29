@@ -789,3 +789,19 @@ MACRO_CONFIG_INT(ClVideoRecorderFPS, cl_video_recorder_fps, 60, 1, 1000, CFGFLAG
 /*
  * Add config variables for mods below this comment to avoid merge conflicts.
  */
+
+// proximity voice chat - server
+MACRO_CONFIG_INT(SvVoiceChat, sv_voice_chat, 0, 0, 1, CFGFLAG_SERVER, "Enable proximity voice chat (0 = off, 1 = on)")
+MACRO_CONFIG_INT(SvVoiceRange, sv_voice_range, 1000, 1, 100000, CFGFLAG_SERVER, "Proximity voice chat hearing range in game units")
+MACRO_CONFIG_INT(SvVoiceSpectators, sv_voice_spectators, 1, 0, 1, CFGFLAG_SERVER, "Allow spectators to hear nearby players via voice chat")
+MACRO_CONFIG_INT(SvVoiceSpectatorsCam, sv_voice_spectators_cam, 0, 0, 1, CFGFLAG_SERVER, "Spectators in free-cam hear voice based on camera position (0 = use spectated player pos)")
+MACRO_CONFIG_INT(SvVoiceMaxPacketRate, sv_voice_max_packet_rate, 150, 1, 1000, CFGFLAG_SERVER, "Max voice packets per second allowed per client (rate limiting)")
+
+// proximity voice chat - client
+MACRO_CONFIG_INT(ClVoiceEnabled, cl_voice_enabled, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Enable proximity voice chat (0 = off, 1 = on)")
+MACRO_CONFIG_INT(ClVoiceSend, cl_voice_send, 1, 0, 1, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Send your voice in proximity voice chat")
+MACRO_CONFIG_INT(ClVoiceVolume, cl_voice_volume, 100, 0, 200, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Master reception volume for proximity voice chat (0-200)")
+MACRO_CONFIG_INT(ClVoiceInputGain, cl_voice_input_gain, 100, 0, 200, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Microphone input gain (0-200, 100 = no change)")
+MACRO_CONFIG_INT(ClVoiceVadThreshold, cl_voice_vad_threshold, 10, 0, 100, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Voice activity detection threshold in percent RMS (0 = disabled)")
+MACRO_CONFIG_INT(ClVoiceJitterBuffer, cl_voice_jitter_buffer, 2, 0, 20, CFGFLAG_CLIENT | CFGFLAG_SAVE, "Jitter buffer size in number of Opus frames (each 10ms)")
+MACRO_CONFIG_STR(ClVoiceInputDevice, cl_voice_input_device, 256, "", CFGFLAG_CLIENT | CFGFLAG_SAVE, "Microphone device name (empty = system default)")

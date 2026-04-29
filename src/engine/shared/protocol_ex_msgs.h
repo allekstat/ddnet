@@ -45,3 +45,7 @@ UUID(NETMSG_RECONNECT, "reconnect@ddnet.org")
 UUID(NETMSG_MAPLIST_ADD, "sv-maplist-add@ddnet.org")
 UUID(NETMSG_MAPLIST_GROUP_START, "sv-maplist-start@ddnet.org")
 UUID(NETMSG_MAPLIST_GROUP_END, "sv-maplist-end@ddnet.org")
+
+// proximity voice chat
+UUID(NETMSG_VOICEDATA, "voice-data@ddnet.org")
+UUID(NETMSG_VOICERELAY, "voice-relay@ddnet.org")

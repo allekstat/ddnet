@@ -77,6 +77,13 @@ void CSounds::UpdateChannels()
 		m_BackgroundMusicVolume = NewBackgroundMusicVolume;
 		Sound()->SetChannel(CSounds::CHN_MUSIC, m_BackgroundMusicVolume, 1.0f);
 	}
+
+	const float NewVoiceChatVolume = g_Config.m_ClVoiceVolume / 100.0f;
+	if(NewVoiceChatVolume != m_VoiceChatVolume)
+	{
+		m_VoiceChatVolume = NewVoiceChatVolume;
+		Sound()->SetChannel(CSounds::CHN_VOICECHAT, m_VoiceChatVolume, 0.0f);
+	}
 }
 
 int CSounds::GetSampleId(int SetId)

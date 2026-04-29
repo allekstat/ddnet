@@ -69,6 +69,10 @@ public:
 	virtual int LoadWV(const char *pFilename, int StorageType = IStorage::TYPE_ALL) = 0;
 	virtual int LoadOpusFromMem(const void *pData, unsigned DataSize, bool ForceLoad, const char *pContextName) = 0;
 	virtual int LoadWVFromMem(const void *pData, unsigned DataSize, bool ForceLoad, const char *pContextName) = 0;
+	// Load a raw s16 mono PCM sample directly (for voice chat).
+	// pData: pointer to s16 mono samples, NumFrames: number of samples, Rate: sample rate in Hz.
+	// Returns SampleId on success, -1 on failure.
+	virtual int LoadRawPCM(const short *pData, int NumFrames, int Rate) = 0;
 	virtual void UnloadSample(int SampleId) = 0;
 
 	virtual float GetSampleTotalTime(int SampleId) = 0; // in s
