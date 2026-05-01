@@ -77,7 +77,7 @@ Os jogadores devem ter acesso às seguintes configurações no menu do jogo:
 
 ### 5.2. Codificação e Decodificação de Áudio (Cliente e Servidor)
 
-1.  **Integração da Biblioteca Opus**: Adicionar a biblioteca Opus ao projeto DDNet. Isso envolverá a inclusão dos cabeçalhos e a vinculação das bibliotecas necessárias.
+1.  **Integração da Biblioteca Opus**: O DDNet já depende de `libopus` e `libopusfile` como dependências obrigatórias do cliente (veja `CMakeLists.txt` e `cmake/FindOpus.cmake`). Não é necessário adicionar uma nova dependência. O que se requer é utilizar a API do *encoder* (`opus_encoder_create`, `opus_encode_float` etc., de `opus/opus.h`), que já está disponível via `libopus`, mas ainda não é usada no código existente (apenas o decodificador via `opusfile` é usado atualmente para reproduzir arquivos de som do jogo). Portanto, nenhuma alteração de build é necessária; basta usar os cabeçalhos e a biblioteca que já estão vinculados.
 2.  **Codificação de Áudio**: No cliente, os dados de áudio capturados pela SDL2 serão passados para o codificador Opus. O codificador converterá os dados de áudio brutos em pacotes de dados menores e mais eficientes para transmissão pela rede. Configurar o codificador para baixa latência e qualidade de voz ideal.
 3.  **Decodificação de Áudio**: No cliente, os pacotes de dados de voz recebidos da rede serão passados para o decodificador Opus. O decodificador converterá os pacotes de volta em dados de áudio brutos, que serão então enviados para o módulo de reprodução da SDL2.
 
