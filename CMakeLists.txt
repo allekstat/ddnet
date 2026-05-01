@@ -2406,6 +2406,8 @@ if(CLIENT)
     sound.cpp
     sound.h
     sqlite.cpp
+    voice_chat.cpp
+    voice_chat.h
     steam.cpp
     text.cpp
     updater.cpp
