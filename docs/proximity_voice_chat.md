@@ -82,11 +82,22 @@ Os jogadores devem ter acesso às seguintes configurações no menu do jogo:
 
 ### 5.3. Sistema de Rede para Voz (Cliente e Servidor)
 
-1.  **Definição de Novo Tipo de Pacote**: Criar uma nova estrutura de pacote de rede para encapsular os dados de voz codificados. Este pacote deve incluir:
-    *   Um identificador para o tipo de pacote de voz.
-    *   O ID do jogador remetente.
-    *   Os dados de áudio codificados (payload).
-    *   Um timestamp para ajudar na sincronização e mitigação de jitter.
+1.  **Definição do Novo Tipo de Pacote (`NETMSG_PLAYER_VOICE`)**: O DDNet usa o sistema `protocol_ex` (arquivos `src/engine/shared/protocol_ex_msgs.h` / `protocol_ex.h`) para adicionar novos tipos de mensagem identificados por UUID sem quebrar a compatibilidade com versões anteriores do protocolo. A mensagem de voz é declarada como:
+
+    ```c
+    UUID(NETMSG_PLAYER_VOICE, "player-voice@ddnet.org")
+    ```
+
+    O payload é empacotado com `CMsgPacker` na seguinte ordem:
+
+    | Ordem | Método         | Campo               | Descrição                                                        |
+    |-------|----------------|---------------------|------------------------------------------------------------------|
+    | 1     | `AddInt`       | Sender client ID    | ID do jogador remetente (0–63)                                  |
+    | 2     | `AddInt`       | Timestamp           | Game tick corrente — usado para mitigação de jitter no receptor |
+    | 3     | `AddInt`       | Opus payload size   | Tamanho em bytes do payload Opus (≤ 1275 bytes — RFC 6716 §3.2.1) |
+    | 4     | `AddRaw`       | Opus-encoded audio  | Dados PCM codificados pelo encoder Opus                         |
+
+    O receptor usa `CUnpacker::GetInt()` / `CUnpacker::GetRaw()` na mesma ordem para desempacotar.
 2.  **Transmissão do Cliente para o Servidor**: Quando um jogador fala (ex: pressiona uma tecla 'push-to-talk'), o cliente codifica o áudio e envia os pacotes de voz para o servidor.
 3.  **Processamento e Retransmissão do Servidor**: O servidor receberá os pacotes de voz. Para cada pacote, o servidor deve:
     *   Identificar o jogador remetente, sua posição atual e seu time.

@@ -45,3 +45,11 @@ UUID(NETMSG_RECONNECT, "reconnect@ddnet.org")
 UUID(NETMSG_MAPLIST_ADD, "sv-maplist-add@ddnet.org")
 UUID(NETMSG_MAPLIST_GROUP_START, "sv-maplist-start@ddnet.org")
 UUID(NETMSG_MAPLIST_GROUP_END, "sv-maplist-end@ddnet.org")
+
+// Proximity voice chat: voice data packet sent client→server and server→clients.
+// Payload layout (CMsgPacker order):
+//   AddInt  : sender client ID   (0–63)
+//   AddInt  : timestamp          (game tick, for jitter mitigation)
+//   AddInt  : Opus payload size  (bytes)
+//   AddRaw  : Opus-encoded PCM   (up to 1275 bytes per RFC 6716 §3.2.1)
+UUID(NETMSG_PLAYER_VOICE, "player-voice@ddnet.org")
