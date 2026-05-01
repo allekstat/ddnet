@@ -6,7 +6,7 @@ Este documento detalha a implementação de um sistema de chat de voz por proxim
 
 ## 2. Visão Geral da Arquitetura do DDNet
 
-O DDNet é um jogo de plataforma cooperativo de código aberto, construído sobre o motor do Teeworlds. Sua arquitetura é predominantemente escrita em C++ e utiliza a biblioteca SDL2 para manipulação de áudio, entrada e gráficos [1].
+O DDNet é um jogo de plataforma cooperativo de código aberto, construído sobre o motor do Teeworlds. Sua arquitetura é predominantemente escrita em C++ e utiliza a biblioteca SDL2 para manipulação de áudio e entrada de dados; a renderização gráfica é tratada pelos backends dedicados OpenGL e Vulkan (SDL2 fornece apenas a janela e o contexto de entrada) [1].
 
 ### 2.1. Sistema de Rede
 
@@ -50,8 +50,7 @@ Para garantir uma experiência de usuário coesa e funcional, o chat de voz por 
 ### 4.3. Comportamento no Modo Espectador
 
 *   **Escuta do Espectador**: Ao observar um jogador, o espectador ouvirá os sons do local onde a câmera está focada (incluindo as vozes dos jogadores próximos à câmera) e também os sons próximos ao seu próprio personagem (se o espectador tiver uma posição virtual no mapa).
-*   **Invisibilidade de Voz do Espectador**: Espectadores não serão ouvidos pelos jogadores observados. Isso evita o que pode ser percebido como 
-"vozes fantasmas" ou intrusões inesperadas na comunicação dos jogadores ativos.
+*   **Invisibilidade de Voz do Espectador**: Espectadores não serão ouvidos pelos jogadores observados. Isso evita o que pode ser percebido como "vozes fantasmas" ou intrusões inesperadas na comunicação dos jogadores ativos.
 *   **Privacidade entre Espectadores**: Espectadores na mesma área não se ouvirão entre si, mantendo a privacidade e evitando confusão sonora entre eles.
 
 ### 4.4. Configurações do Lado do Cliente
