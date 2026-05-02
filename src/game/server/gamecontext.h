@@ -362,6 +362,7 @@ public:
 	void OnKillNetMessage(const CNetMsg_Cl_Kill *pMsg, int ClientId);
 	void OnEnableSpectatorCountNetMessage(const CNetMsg_Cl_EnableSpectatorCount *pMsg, int ClientId);
 	void OnStartInfoNetMessage(const CNetMsg_Cl_StartInfo *pMsg, int ClientId);
+	void OnPlayerVoiceNetMessage(CUnpacker *pUnpacker, int ClientId);
 
 	bool OnClientDataPersist(int ClientId, void *pData) override;
 	void OnClientConnected(int ClientId, void *pData) override;
